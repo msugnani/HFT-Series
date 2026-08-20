@@ -1,5 +1,7 @@
 # Kernel bypass: userspace NIC / RX-ring
 
+Chapter 8 of the [HFT Series](../README.md). Earlier chapters cover cache lines, the memory model, Linux jitter, measurement, and a limit book; this one puts those shapes on a receive path.
+
 A model of the **ef_vi / ExaNIC receive path**. A UDP socket stands in for the NIC. The application never calls `recvfrom`. It only **posts** buffers, **polls** completions, and **reposts** — the same ownership loop as `ef_vi_receive_init` / `ef_eventq_poll`.
 
 C++20, CMake. The UDP path (`recvmmsg`) is Linux/WSL. The ownership tests are portable and need no socket.
